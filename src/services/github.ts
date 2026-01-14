@@ -18,6 +18,7 @@ export interface BlogPost {
   number: number;
   title: string;
   body: string;
+  cover_image?: string | null;
   created_at: string;
   updated_at: string;
   user: {
@@ -31,6 +32,18 @@ export interface BlogPost {
   html_url: string;
 }
 
+const extractFirstImage = (markdown: string): string | null => {
+  // Match Markdown image: ![alt](url)
+  const mdMatch = markdown.match(/!\[.*?\]\((.*?)\)/);
+  if (mdMatch && mdMatch[1]) return mdMatch[1];
+
+  // Match HTML image: <img src="url" ... />
+  const htmlMatch = markdown.match(/<img.*?src=["'](.*?)["']/);
+  if (htmlMatch && htmlMatch[1]) return htmlMatch[1];
+
+  return null;
+};
+
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     const response = await fetch(`${GITHUB_API_URL}/issues?state=open&sort=created&direction=desc`, {
@@ -40,7 +53,13 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
       throw new Error('Failed to fetch blog posts');
     }
     const data = await response.json();
-    return data.filter((issue: any) => !issue.pull_request);
+    
+    return data
+      .filter((issue: any) => !issue.pull_request)
+      .map((issue: any) => ({
+        ...issue,
+        cover_image: extractFirstImage(issue.body || '')
+      }));
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return [];

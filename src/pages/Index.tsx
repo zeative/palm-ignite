@@ -1,13 +1,11 @@
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
+import HeroSection from "@/components/HeroSection";
 import ProductsSection from "@/components/ProductsSection";
 
+import BlogSection from "@/components/BlogSection";
+import ContactSection from "@/components/ContactSection";
 import ExportSection from "@/components/ExportSection";
 import GallerySection from "@/components/GallerySection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const Index = () => {
   return (
@@ -19,6 +17,7 @@ const Index = () => {
 
         <ExportSection />
         <GallerySection />
+        <BlogSection />
         <ContactSection />
       </main>
     </div>
