@@ -11,7 +11,7 @@ const Footer: React.FC<FooterProps> = ({ mobileMap }) => {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-charcoal py-8 border-t border-border">
+    <footer className="bg-charcoal pt-8 border-t border-border">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-6 md:gap-24 py-5 mb-10 items-start">
           <div>
@@ -91,7 +91,7 @@ const Footer: React.FC<FooterProps> = ({ mobileMap }) => {
           </div>
         </div>
 
-        <div className="text-center flex flex-col items-center gap-1 py-2 md:py-4 bg-charcoal border-t border-border my-2 md:my-5">
+        <div className="text-center flex flex-col items-center gap-1 py-2 md:py-4 bg-charcoal border-t border-border my-2">
           <p className="font-[Onest] text-sm text-muted-foreground">
             © 2025
             <span onClick={() => document.getElementById("home")?.scrollIntoView({ behavior: "smooth" })} className="hover:underline cursor-pointer">
@@ -99,26 +99,6 @@ const Footer: React.FC<FooterProps> = ({ mobileMap }) => {
               Palmignite Charcoal Trade
             </span>{" "}
             — All Rights Reserved.
-          </p>
-
-          <p className="font-[Onest] text-sm text-muted-foreground flex items-center gap-1">
-            Designed & Built by
-            <Tooltip.Provider delayDuration={150}>
-              <Tooltip.Root>
-                <Tooltip.Trigger asChild>
-                  <a href="https://instagram.com/mhmdikhsxn" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">
-                    {" "}
-                    SXNDev
-                  </a>
-                </Tooltip.Trigger>
-                <Tooltip.Portal>
-                  <Tooltip.Content side="bottom" sideOffset={8} className="bg-black/90 text-white text-xs px-3 py-1.5 rounded-lg shadow-lg backdrop-blur-md animate-fadeIn">
-                    Follow Developer!
-                    <Tooltip.Arrow className="fill-black/90" />
-                  </Tooltip.Content>
-                </Tooltip.Portal>
-              </Tooltip.Root>
-            </Tooltip.Provider>
           </p>
         </div>
       </div>
