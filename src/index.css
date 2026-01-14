@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 45 90% 55%;
+    --primary-foreground: 0 0% 3%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 45 90% 55%;
+    --accent-foreground: 0 0% 3%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 45 90% 55%;
+
+    --radius: 0.75rem;
+
+    /* Premium Palm Ignite Design System */
+    --charcoal: 0 0% 3%;
+    --charcoal-light: 0 0% 10%;
+    --gold: 45 90% 55%;
+    --gold-light: 45 100% 65%;
+    --gold-dark: 45 85% 45%;
+
+    --gradient-gold: linear-gradient(135deg, hsl(45 90% 55%), hsl(45 100% 65%));
+    --gradient-gold-radial: radial-gradient(circle at top right, hsl(45 90% 55% / 0.15), transparent 70%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 3%), hsl(0 0% 5%));
+    --gradient-overlay: linear-gradient(135deg, hsl(0 0% 3% / 0.95), hsl(0 0% 5% / 0.9));
+
+    --shadow-gold: 0 20px 60px hsla(45, 90%, 55%, 0.25);
+    --shadow-gold-lg: 0 30px 80px hsla(45, 90%, 55%, 0.35);
+    --shadow-card: 0 4px 20px hsla(0, 0%, 0%, 0.3);
+    --shadow-card-hover: 0 8px 40px hsla(0, 0%, 0%, 0.4);
+
+    --glass-bg: hsla(0, 0%, 10%, 0.6);
+    --glass-border: hsla(0, 0%, 100%, 0.1);
+
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s ease-out;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border font-[];
+    user-select: none;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out forwards;
+}

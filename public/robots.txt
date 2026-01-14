@@ -1,0 +1,23 @@
+# ✅ Izinkan semua bot utama untuk mengindeks situs
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: *
+Allow: /
+
+# ❌ Blokir folder sensitif (kalau ada)
+Disallow: /admin/
+Disallow: /login/
+Disallow: /private/
+
+# 🗺️ Lokasi sitemap
+Sitemap: https://palmignitetrade.com/sitemap.xml
