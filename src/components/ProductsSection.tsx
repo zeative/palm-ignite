@@ -48,11 +48,9 @@ const ProductsSection = () => {
 
   return (
     <section id="products" ref={sectionRef} className="py-24 md:py-32 bg-gradient-to-b from-secondary to-background relative overflow-hidden">
-      {/* Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-gold/5 blur-3xl rounded-full" />
 
       <div className="container mx-auto px-4 relative">
-        {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
             <p className="text-gold font-semibold mb-3 tracking-wide uppercase text-sm">Our Products</p>
@@ -61,7 +59,6 @@ const ProductsSection = () => {
           </div>
         </div>
 
-        {/* Products Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {products.map((product, index) => (
             <div
@@ -72,27 +69,22 @@ const ProductsSection = () => {
               onMouseLeave={() => setHoveredIndex(null)}
             >
               <div className="group relative h-full">
-                {/* Card */}
                 <div
                   className={`relative h-full rounded-2xl overflow-hidden bg-card border border-border shadow-card transition-all duration-500 ${
                     hoveredIndex === index ? "shadow-card-hover border-gold/30 -translate-y-2" : ""
                   }`}
                 >
-                  {/* Image Container */}
                   <div className="relative h-64 overflow-hidden">
                     <img src={product.image} alt={product.title} className={`w-full h-full object-cover transition-transform duration-700 ${hoveredIndex === index ? "scale-110" : "scale-100"}`} />
-                    {/* Gradient Overlay */}
                     <div className={`absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-transparent transition-opacity duration-500 ${hoveredIndex === index ? "opacity-90" : "opacity-80"}`} />    
                   </div>
 
-                  {/* Content */}
                   <div className="p-6 space-y-4">
                     <div>
                       <h3 className="font-[Onest] text-2xl font-bold text-foreground mb-2 group-hover:text-gold transition-colors">{product.title}</h3>
                       <p className="text-muted-foreground text-[13px] leading-relaxed">{product.description}</p>
                     </div>
 
-                    {/* Specs */}
                     <div className="flex flex-wrap gap-2 pt-2">
                       {product.specs.map((spec, i) => (
                         <span key={i} className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gold/10 text-gold border border-gold/20">
@@ -101,7 +93,6 @@ const ProductsSection = () => {
                       ))}
                     </div>
 
-                    {/* Action Link */}
                     <button onClick={() => navigate("/product/charcoal")} className={`inline-flex items-center gap-2 text-sm font-semibold text-gold transition-all ${hoveredIndex === index ? "gap-3" : ""}`}>
                       View Specifications
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

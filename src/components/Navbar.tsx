@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ChevronDown, Globe, Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +12,6 @@ const Navbar = () => {
   const underlineRef = useRef<HTMLSpanElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  /* 🔥 DESKTOP LANG POSITION */
   const langBtnRef = useRef<HTMLButtonElement>(null);
   const [langPos, setLangPos] = useState({ top: 0, right: 0 });
 
@@ -20,14 +19,12 @@ const Navbar = () => {
 
   const menuItems = ["home", "about", "products", "export", "gallery", "contact"];
 
-  /* ================= Scroll BG ================= */
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* ================= Scroll Spy ================= */
   const initObserver = () => {
     observerRef.current?.disconnect();
 
@@ -51,7 +48,6 @@ const Navbar = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
-  /* ================= Underline ================= */
   useEffect(() => {
     if (!navRef.current || !underlineRef.current) return;
 
@@ -65,7 +61,6 @@ const Navbar = () => {
     underlineRef.current.style.transform = `translateX(${btnRect.left - navRect.left}px) scaleX(1)`;
   }, [activeSection]);
 
-  /* ================= Scroll To ================= */
   const scrollToSection = (id: string) => {
     observerRef.current?.disconnect();
     setActiveSection(id);
@@ -84,18 +79,15 @@ const Navbar = () => {
 
   return (
     <>
-      {/* ================= NAVBAR ================= */}
       <nav className={`fixed top-0 w-full z-50 transition-colors duration-200 ${isScrolled ? "bg-charcoal/85 backdrop-blur shadow-lg" : "bg-transparent"}`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
             <div onClick={() => scrollToSection("home")} className="cursor-pointer flex items-center gap-3">
               <img src="/web-app-manifest-192x192.png" className="w-8 rounded-full" />
               <h1 className="text-gold font-bold text-xl hidden lg:block">Palmignite Charcoal</h1>
               <h1 className="text-gold font-bold text-xl lg:hidden">Palmignite Charcoal</h1>
             </div>
 
-            {/* Desktop Nav */}
             <div ref={navRef} className="relative hidden md:flex items-center gap-4">
               {menuItems.map((id) => (
                 <button key={id} data-id={id} onClick={() => scrollToSection(id)} className={`nav-link ${activeSection === id ? "nav-active" : ""}`}>
@@ -105,7 +97,6 @@ const Navbar = () => {
               <span ref={underlineRef} className="nav-underline" />
             </div>
 
-            {/* ===== DESKTOP LANGUAGE BUTTON ===== */}
             <div className="hidden md:block">
               <button
                 ref={langBtnRef}
@@ -128,7 +119,6 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* Burger (MOBILE ASLI) */}
             <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-gold">
               {isOpen ? <X /> : <Menu />}
             </button>
@@ -136,9 +126,11 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* ===== DESKTOP LANG DROPDOWN (FIXED, GA IKUT NAV) ===== */}
       {showLangDropdown && (
-        <div className="hidden md:block fixed z-[9999] w-48 bg-charcoal/85 border border-border rounded-lg overflow-hidden shadow-xl" style={{ top: langPos.top, right: langPos.right }}>
+        <div
+          className="hidden md:block fixed z-[9999] w-48 bg-charcoal/85 border border-border rounded-lg overflow-hidden shadow-xl"
+          style={{ top: langPos.top, right: langPos.right }}
+        >
           {languages.map((lang, index) => (
             <button
               key={lang.code}
@@ -149,14 +141,12 @@ const Navbar = () => {
               className="block w-full text-left px-4 py-3.5 text-sm hover:bg-charcoal/95 relative last:border-b-0"
             >
               <span className="block mx-2">{lang.name}</span>
-              {/* border di dalam */}
               {index !== languages.length - 1 && <span className="absolute left-2 right-2 bottom-0 border-b border-border"></span>}
             </button>
           ))}
         </div>
       )}
 
-      {/* ================= MOBILE MENU (ASLI, GA DIUBAH) ================= */}
       {isOpen && (
         <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden">
           <div className="absolute top-20 left-0 w-full bg-charcoal p-6 space-y-4">
@@ -184,7 +174,6 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* ================= STYLES ================= */}
       <style>{`
         .nav-link {
           font-family: Onest, sans-serif;

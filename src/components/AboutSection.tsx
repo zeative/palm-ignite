@@ -115,12 +115,18 @@ const AboutSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* MEDIA */}
           <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}>
             <div className="relative group">
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 {showVideo ? (
-                  <video src={productionVideo} autoPlay muted playsInline onEnded={handleVideoEnd} className={`w-full h-auto object-cover transition-opacity duration-500 ${fadeVideo ? "opacity-0" : "opacity-100"}`} />
+                  <video
+                    src={productionVideo}
+                    autoPlay
+                    muted
+                    playsInline
+                    onEnded={handleVideoEnd}
+                    className={`w-full h-auto object-cover transition-opacity duration-500 ${fadeVideo ? "opacity-0" : "opacity-100"}`}
+                  />
                 ) : (
                   <img src={aboutImage} alt="Palm Ignite Production" className="w-full h-auto object-cover transition-opacity duration-700 opacity-100" />
                 )}
@@ -138,7 +144,6 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* TEXT */}
           <div className={`transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}>
             <div className="space-y-6">
               <p className="text-foreground/90 text-lg leading-relaxed min-h-[120px]">
@@ -150,7 +155,10 @@ const AboutSection = () => {
                 {features.map((feature, index) => {
                   const Icon = feature.icon;
                   return (
-                    <div key={index} className="glass-card p-5 rounded-xl backdrop-blur-sm bg-card/40 border border-glass-border hover:border-gold/30 transition-all duration-300 group cursor-pointer">
+                    <div
+                      key={index}
+                      className="glass-card p-5 rounded-xl backdrop-blur-sm bg-card/40 border border-glass-border hover:border-gold/30 transition-all duration-300 group cursor-pointer"
+                    >
                       <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                         <Icon className="w-5 h-5 text-gold" />
                       </div>
@@ -162,7 +170,10 @@ const AboutSection = () => {
               </div>
 
               <div className="pt-4">
-                <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all">
+                <button
+                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                  className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-3 transition-all"
+                >
                   Learn More About Us
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />

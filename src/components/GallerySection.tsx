@@ -64,7 +64,6 @@ const GallerySection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative">
-        {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
             <p className="text-gold font-semibold mb-3 tracking-wide uppercase text-sm">Gallery</p>
@@ -73,7 +72,6 @@ const GallerySection = () => {
           </div>
         </div>
 
-        {/* Gallery Grid */}
         <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {images.map((image, index) => (
             <div key={index} className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`} style={{ transitionDelay: `${index * 150}ms` }}>
@@ -84,13 +82,10 @@ const GallerySection = () => {
                   setIsZoomed(false);
                 }}
               >
-                {/* Image */}
                 <img src={image.src} alt={image.alt} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
 
-                {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
 
-                {/* Content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-gold/20 text-gold border border-gold/30 backdrop-blur-sm mb-3">{image.category}</span>
@@ -102,23 +97,19 @@ const GallerySection = () => {
                   </div>
                 </div>
 
-                {/* Border Glow on Hover */}
                 <div className="absolute inset-0 border-2 border-gold/0 group-hover:border-gold/40 rounded-2xl transition-all duration-300" />
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom Text */}
         <div className="text-center mt-12">
           <p className="text-muted-foreground">Experience our commitment to quality at every stage of production</p>
         </div>
       </div>
 
-      {/* Lightbox Modal */}
       {selectedImage && (
         <div className="fixed inset-0 bg-charcoal/98 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-fade-in" onClick={() => setSelectedImage(null)}>
-          {/* Close Button */}
           <button
             onClick={() => setSelectedImage(null)}
             className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center text-foreground hover:text-gold bg-card/80 backdrop-blur-sm rounded-full transition-all hover:scale-110 shadow-lg z-10"
@@ -126,7 +117,6 @@ const GallerySection = () => {
             <X className="w-6 h-6" />
           </button>
 
-          {/* Image (Zoomable + Pan) */}
           <div
             ref={imgContainerRef}
             className="relative max-w-7xl max-h-[90vh] animate-scale-in overflow-hidden cursor-grab active:cursor-grabbing"
@@ -147,7 +137,6 @@ const GallerySection = () => {
             />
           </div>
 
-          {/* Instructions */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 glass-card px-6 py-3 rounded-full backdrop-blur-xl bg-card/60 border border-glass-border">
             <p className="text-sm text-muted-foreground">Click anywhere to close</p>
           </div>

@@ -14,23 +14,18 @@ const Footer: React.FC<FooterProps> = ({ mobileMap }) => {
     <footer className="bg-charcoal py-8 border-t border-border">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-6 md:gap-24 py-5 mb-10 items-start">
-          {/* Kolom kiri */}
           <div>
             <div className="flex flex-col md:flex-row gap-6 md:gap-16 py-6 md:py-10 md:pl-16">
-              {/* ===== KIRI ===== */}
               <div className="flex flex-col gap-10 max-w-xl">
-                {/* Title + Description */}
                 <div>
                   <h1 className="text-3xl font-extrabold">Palmignite Charcoal</h1>
                   <p className="mt-4 text-gray-400 leading-relaxed">We are a trusted Indonesian charcoal exporter from Yogyakarta, delivering premium-quality charcoal that meets international standards.</p>
                 </div>
 
-                {/* Contact Information (DI BAWAH PARAGRAF) */}
                 <div className="glass-card p-4 rounded-xl backdrop-blur-sm bg-card/40 border border-glass-border max-w-sm">
                   <h3 className="font-semibold text-foreground mb-4 text-sm"> Information</h3>
 
                   <div className="space-y-4">
-                    {/* Email */}
                     <a href="mailto:info@palmignitetrade.com" className="flex items-start gap-3 group">
                       <div className="w-9 h-9 rounded-lg bg-gold/10 flex items-center justify-center">
                         <Mail className="w-4 h-4 text-gold" />
@@ -41,7 +36,6 @@ const Footer: React.FC<FooterProps> = ({ mobileMap }) => {
                       </div>
                     </a>
 
-                    {/* Instagram */}
                     <a href="https://instagram.com/palmignite.trade" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 group">
                       <div className="w-9 h-9 rounded-lg bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
                         <Instagram className="w-5 h-5 text-gold" />
@@ -52,7 +46,6 @@ const Footer: React.FC<FooterProps> = ({ mobileMap }) => {
                       </div>
                     </a>
 
-                    {/* Telephone */}
                     <a href="https://wa.me/6282221521043" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 group">
                       <div className="w-9 h-9 rounded-lg bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
                         <Phone className="w-5 h-5 text-gold" />
@@ -63,7 +56,6 @@ const Footer: React.FC<FooterProps> = ({ mobileMap }) => {
                       </div>
                     </a>
 
-                    {/* Location */}
                     <div className="flex items-start gap-3">
                       <div className="w-9 h-9 rounded-lg bg-gold/10 flex items-center justify-center">
                         <MapPin className="w-4 h-4 text-gold" />
@@ -77,7 +69,6 @@ const Footer: React.FC<FooterProps> = ({ mobileMap }) => {
                 </div>
               </div>
 
-              {/* ===== KANAN (NAV) ===== */}
 
               <nav className="mt-6 md:mt-14 text-[15px] flex flex-col gap-y-2 md:gap-y-4 text-gray-500">
                 <a href="#about" className="hover:text-gold transition-colors">
