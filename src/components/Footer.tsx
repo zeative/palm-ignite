@@ -98,7 +98,7 @@ const Footer: React.FC<FooterProps> = ({ mobileMap }) => {
                 <div className="flex flex-col">
                   <span className="text-[10px] text-muted-foreground/50 uppercase tracking-wider">{t("footer.contact.email.label")}</span>
                   <a href="mailto:palmignitecharcoaltrade@gmail.com" className="font-medium hover:text-primary transition-colors">
-                    palmignitecharcoaltrade@gmail.com
+                    info@palmignitecharcoaltrade.com
                   </a>
                 </div>
               </li>
