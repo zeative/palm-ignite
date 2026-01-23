@@ -12,7 +12,12 @@ const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // State untuk kontrol input dan validasi
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,24 +41,30 @@ const ContactSection = () => {
   }, []);
 
   const formatPhoneNumber = (value: string) => {
-    return value.replace(/\D/g, "").slice(0, 15); // hanya angka, max 15 digit
+    return value.replace(/\D/g, "").slice(0, 15);
   };
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(formatPhoneNumber(e.target.value));
-  };
+  // Validasi: Email harus ada @ dan titik, field lain gak boleh kosong
+  const isEmailValid = userEmail.includes("@") && userEmail.includes(".");
+  const isFormValid = userName.trim() !== "" && isEmailValid && message.trim() !== "";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formRef.current) return;
+    if (!formRef.current || !isFormValid) return;
 
     setIsSubmitting(true);
 
     try {
+      // EmailJS narik data berdasarkan atribut "name" di input, jadi isinya aman gak berubah
       await emailjs.sendForm(import.meta.env.VITE_EMAILJS_SERVICE_ID, import.meta.env.VITE_EMAILJS_TEMPLATE_ID, formRef.current, import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
       toast.success(t("contact.success"));
       formRef.current.reset();
+
+      // Reset semua state manual
       setPhoneNumber("");
+      setUserName("");
+      setUserEmail("");
+      setMessage("");
     } catch (error) {
       toast.error(t("contact.error"));
       console.error("EmailJS Error:", error);
@@ -82,6 +93,8 @@ const ContactSection = () => {
                         name="user_name"
                         type="text"
                         required
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
                         className="w-full h-12 px-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all outline-none"
                         placeholder={t("contact.form.namePlaceholder")}
                       />
@@ -93,8 +106,10 @@ const ContactSection = () => {
                       <input
                         id="email"
                         name="user_email"
-                        type="mail"
+                        type="email"
                         required
+                        value={userEmail}
+                        onChange={(e) => setUserEmail(e.target.value)}
                         className="w-full h-12 px-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all outline-none"
                         placeholder={t("contact.form.emailPlaceholder")}
                       />
@@ -108,9 +123,9 @@ const ContactSection = () => {
                     <input
                       id="phone"
                       name="user_phone"
-                      type="phone"
+                      type="tel"
                       value={phoneNumber}
-                      onChange={handlePhoneChange}
+                      onChange={(e) => setPhoneNumber(formatPhoneNumber(e.target.value))}
                       className="w-full h-12 px-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all outline-none"
                       placeholder={t("contact.form.phonePlaceholder")}
                     />
@@ -124,6 +139,8 @@ const ContactSection = () => {
                       id="message"
                       name="message"
                       required
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                       rows={4}
                       className="w-full p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all outline-none resize-none"
                       placeholder={t("contact.form.messagePlaceholder")}
@@ -132,8 +149,8 @@ const ContactSection = () => {
 
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-full h-14 bg-gold hover:bg-gold-light text-charcoal font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-gold/20 hover:shadow-gold/40 shadow-lg"
+                    disabled={isSubmitting || !isFormValid}
+                    className="w-full h-14 bg-gold hover:bg-gold-light text-charcoal font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed shadow-gold/20 hover:shadow-gold/40 shadow-lg"
                   >
                     {isSubmitting ? (
                       <div className="w-5 h-5 border-2 border-charcoal/30 border-t-charcoal rounded-full animate-spin" />
@@ -151,15 +168,12 @@ const ContactSection = () => {
             <div className="lg:col-span-2 order-2 lg:order-1 space-y-8">
               <div className="space-y-6">
                 <div className="relative h-72 rounded-2xl overflow-hidden border border-white/5 shadow-2xl">
-                  {/* Map */}
                   <iframe
                     width="100%"
                     height="600"
                     scrolling="no"
-                    src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=umbulharjo%20jogja+(Palmignite%20Charcoal%20Trade)&amp;t=k&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                    src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=umbulharjo%20jogja+(Palmignite%20Charcoal%20Trade)&t=k&z=14&ie=UTF8&iwloc=B&output=embed"
                   ></iframe>
-
-                  {/* Dark overlay */}
                   <div className="absolute inset-0 bg-black/25 pointer-events-none" />
                 </div>
 
